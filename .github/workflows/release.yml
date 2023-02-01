@@ -35,7 +35,7 @@ jobs:
           prerelease: true
       - name: Update dev-build tag
         if: github.event_name == 'push'
-        run: |
+        run:
            git tag -d ${{ env.dev_tag }} || true
            git push origin :refs/tags/${{ env.dev_tag }} || true
            git tag ${{ env.dev_tag }}
