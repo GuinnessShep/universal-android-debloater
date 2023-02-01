@@ -1,0 +1,15 @@
+- name: Create dev-build release
+  if: ${{ github.event_name == 'push' }}
+  uses: softprops/action-gh-release@v1
+  with:
+    generate_release_notes: true
+    files: bin/*/uad_gui-*
+    prerelease: true
+    tag_name: ${{ env.dev_tag }}
+  env:
+    dev_tag: dev-build
+  run: |
+    git tag -d ${{ env.dev_tag }} || true
+    git push origin :refs/tags/${{ env.dev_tag }} || true
+    git tag ${{ env.dev_tag }}
+    git push origin ${{ env.dev_tag }}
