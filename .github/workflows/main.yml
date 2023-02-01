@@ -1,4 +1,4 @@
-name: Build the release
+name: Build and release
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v3
-      - name: Downloads artifacts
+      - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           path: bin
